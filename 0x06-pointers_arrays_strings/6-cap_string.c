@@ -3,27 +3,30 @@
 
 /**
  *cap_string - Capitalizes the first letter of each word in a string.
- *.
+ *
  *@str: input string.
  *Return: A pointer to the capitalized string
  */
 char *cap_string(char *str)
 {
-	int cap_next = 1;
-	char *p = str;
+	int count = 0, i;
+	int sep_words[] = {32, 9, 10, 44, 59, 46, 33, 63, 34, 40, 41, 123, 125};
 
-	while (*p != '\0')
+	if (*(str + count) >= 97 && *(str + count) <= 122)
+		*(str + count) = *(str + count) - 32;
+	count++;
+	while (*(str + count) != '\0')
 	{
-		if (cap_next && isalpha(*p))
+		for (i = 0; i < 13; i++)
 		{
-			*p = toupper(*p);
-			cap_next = 0;
+			if (*(str + count) == sep_words[i])
+			{
+				if ((*(str + (count + 1)) >= 97) && (*(str + (count + 1)) <= 122))
+					*(str + (count + 1)) = *(str + (count + 1)) - 32;
+				break;
+			}
 		}
-		else if (isspace(*p) || ispunct(*p))
-		{
-			cap_next = 1;
-		}
-		p++;
+		count++;
 	}
 	return (str);
 }
