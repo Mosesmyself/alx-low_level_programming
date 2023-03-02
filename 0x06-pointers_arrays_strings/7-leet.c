@@ -7,23 +7,22 @@
  */
 char *leet(char *str)
 {
-	char leet_map[256] = {0};
+	int count = 0, a;
+	int low_letters[] = {97, 101, 111, 116, 108};
+	int upp_letters[] = {65, 69, 79, 84, 76};
+	int numbers[] = {52, 51, 48, 55, 49};
 
-	leet_map['a'] = leet_map['A'] = '4';
-	leet_map['e'] = leet_map['E'] = '3';
-	leet_map['o'] = leet_map['O'] = '0';
-	leet_map['t'] = leet_map['T'] = '7';
-	leet_map['l'] = leet_map['L'] = '1';
-
-	char *p = str;
-
-	while (*p != '\0')
+	while (*(str + count) != '\0')
 	{
-		if (leet_map[*p] != 0)
+		for (a = 0; a < 5; a++)
 		{
-			*p = leet_map[*p];
+			if (*(str + count) == low_letters[a] || *(str + count) == upp_letters[a])
+			{
+				*(str + count) = numbers[a];
+				break;
+			}
 		}
-		p++;
+		count++;
 	}
 	return (str);
 }
