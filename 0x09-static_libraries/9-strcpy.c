@@ -11,7 +11,7 @@ char *_strcpy(char *dest, char *src)
 {
 	char *beginning = dest;
 
-	while (*dest++ = *src++)
+	while ((*dest++ = *src++))
 		;
 	return (beginning);
 }
